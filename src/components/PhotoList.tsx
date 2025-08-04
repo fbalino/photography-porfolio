@@ -75,8 +75,12 @@ export default function PhotoList() {
                   alt={photo.title}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.currentTarget.style.display = 'none'
-                    e.currentTarget.nextElementSibling!.style.display = 'flex'
+                    const target = e.currentTarget as HTMLImageElement
+                    target.style.display = 'none'
+                    const sibling = target.nextElementSibling as HTMLElement
+                    if (sibling) {
+                      sibling.style.display = 'flex'
+                    }
                   }}
                 />
                 <div className="w-full h-full bg-gray-700 flex items-center justify-center" style={{display: 'none'}}>

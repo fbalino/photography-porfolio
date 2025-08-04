@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 
+type Category = 'portraits' | 'landscapes' | 'street' | 'abstract'
+
 export default function PhotoUpload() {
   const [uploading, setUploading] = useState(false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [category, setCategory] = useState<'portraits' | 'landscapes' | 'street' | 'abstract'>('portraits')
+  const [category, setCategory] = useState<Category>('portraits')
   const [file, setFile] = useState<File | null>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +105,7 @@ export default function PhotoUpload() {
           <label className="block text-white/70 text-sm mb-2 tracking-wide">Category</label>
           <select
             value={category}
-            onChange={(e) => setCategory(e.target.value as any)}
+            onChange={(e) => setCategory(e.target.value as Category)}
             className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded text-white focus:outline-none focus:border-white/40"
           >
             <option value="portraits">Portraits</option>
